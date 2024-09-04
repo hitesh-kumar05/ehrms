@@ -1,0 +1,174 @@
+<form [formGroup]="mainForm">
+    <div>
+      <mat-card>
+        <mat-card-content>
+          <h5 class="text_primary">
+            <b>Office Details</b>
+          </h5>
+          <hr class="mt-0">
+          <div class="row">
+            <div class="col-sm-3 mb-1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Office Name (In English) </mat-label>
+                  <input matInput type="text" formControlName="office_name_en"
+                         >
+                </mat-form-field>
+                <mat-error *ngIf="control('office_name_en').invalid  && (control('office_name_en').dirty || control('office_name_en').touched)">
+                  <mat-error *ngIf="control('office_name_en').errors!.pattern"> Please Enter in English</mat-error>
+                  
+                </mat-error>
+              </div>
+              <div class="col-sm-3 mb-1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Office Name (In Hindi) </mat-label>
+                  <input matInput type="text" formControlName="office_name_hi">
+                </mat-form-field>
+                <mat-error
+                  *ngIf="control('office_name_hi').invalid  && (control('office_name_hi').dirty || control('office_name_hi').touched)">
+                  <mat-error *ngIf="control('office_name_hi').errors!.pattern"> Please Enter in English</mat-error>
+                  
+                </mat-error>
+              </div>
+              <div class="col-sm-3 mb-1">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Office Level</mat-label>
+                  <mat-select formControlName="office_level_code" (selectionChange)="onofficelevelchange()">
+                    
+                    <mat-option  *ngFor="let ol of officelevel"  [value]="ol.office_level_code">{{ol.office_level_name_en}}</mat-option>
+                   
+                  </mat-select>
+                  <mat-error >
+                    <mat-error>
+                      <strong>Required! </strong> Please select Office Level
+                    </mat-error>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-3 mb-1">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Office Type</mat-label>
+                  <mat-select formControlName="office_type_code" (selectionChange)="onofficetypechange()">
+                    
+                    <mat-option  *ngFor="let ot of officetype"  [value]="ot.office_type_code">{{ot.office_type_name_en}}</mat-option>
+                   
+                  </mat-select>
+                  <mat-error >
+                    <mat-error>
+                      <strong>Required! </strong> Please select Office Level
+                    </mat-error>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+             
+            </div>
+            <div class="row">
+                <div class="col-sm-3 mb-1">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>District Name</mat-label>
+                      <mat-select formControlName="district_code" (selectionChange)="ondistrictchange($event)">
+                        
+                        <mat-option  *ngFor="let d of districts"  [value]="d.district_code">{{d.district_name_en}}</mat-option>
+                       
+                      </mat-select>
+                      <mat-error >
+                        <mat-error>
+                          <strong>Required! </strong> Please select District Name
+                        </mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                    <div class="col-sm-3 mb-1">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Block Name</mat-label>
+                      <mat-select formControlName="block_code" (selectionChange)="onblockchange()">
+                        
+                        <mat-option  *ngFor="let b of block"  [value]="b.subdistrict_code">{{b.subdistrict_name}}</mat-option>
+                       
+                      </mat-select>
+                      <mat-error >
+                        <mat-error>
+                          <strong>Required! </strong> Please select Block Name
+                        </mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-3 mb-1">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Office Address </mat-label>
+                      <input matInput type="text" formControlName="office_address">
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="control('office_address').invalid  && (control('office_address').dirty || control('office_address').touched)">
+                      <mat-error *ngIf="control('office_address').errors!.pattern"> Please Enter in English</mat-error>
+                      
+                    </mat-error>
+                  </div>
+            </div>
+        </mat-card-content>
+        </mat-card>
+        <br>
+        <div class="d-flex justify-content-center align-items-center">
+          <button mat-raised-button color="primary" (click)="addOfficename()">सुरक्षित करें</button>
+        </div>
+            
+        <mat-card class="mt-5">
+          <mat-card-content>
+            <div class="mat-elevation-z8">
+  
+                <div class="mt-2 col-lg-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput #search (keyup)="applyFilter(search.value)" placeholder="Search">
+                  </mat-form-field>
+                  </div>
+              
+             
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 center">
+          
+                <ng-container matColumnDef="serial_no">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element; let i = index"> 
+                    {{ i + 1 + (paginator.pageIndex * paginator.pageSize) }} 
+                  </td>
+                </ng-container>
+                
+          
+            <ng-container matColumnDef="office_name_en">
+              <th mat-header-cell *matHeaderCellDef class="center-align"> Office Name on English </th>
+              <td mat-cell *matCellDef="let element" class="center-align"> {{element.office_name_en}} </td>
+            </ng-container>
+            <ng-container matColumnDef="office_name_hi">
+              <th mat-header-cell *matHeaderCellDef> Office Name on Hindi </th>
+              <td mat-cell *matCellDef="let element"> {{element.office_name_hi}} </td>
+            </ng-container>
+            <ng-container matColumnDef="office_level_name_en">
+              <th mat-header-cell *matHeaderCellDef> Office Level </th>
+              <td mat-cell *matCellDef="let element"> {{element.office_level_name_en}} </td>
+            </ng-container>
+            <ng-container matColumnDef="office_type_name_en">
+              <th mat-header-cell *matHeaderCellDef> Office Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.office_type_name_en}} </td>
+            </ng-container>
+            <ng-container matColumnDef="district_name_en">
+              <th mat-header-cell *matHeaderCellDef> District Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.district_name_en}} </td>
+            </ng-container>
+            <ng-container matColumnDef="subdistrict_name">
+              <th mat-header-cell *matHeaderCellDef class="center-align"> Block Name </th>
+              <td mat-cell *matCellDef="let element" class="center-align"> {{element.subdistrict_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="office_address">
+              <th mat-header-cell *matHeaderCellDef class="center-align"> Address </th>
+              <td mat-cell *matCellDef="let element" class="center-align"> {{element.office_address}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+          </table>
+          </div>
+          </mat-card-content>
+          <mat-card-footer><mat-paginator #paginator1 [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator></mat-card-footer>
+        </mat-card>
+      </div>  
+    </form>

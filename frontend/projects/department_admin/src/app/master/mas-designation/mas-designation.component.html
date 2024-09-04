@@ -1,0 +1,191 @@
+
+<form [formGroup]="mainForm">
+    <div>
+      <mat-card>
+        <mat-card-content>
+          <h5 class="text_primary">
+            <b>Designation Master</b>
+          </h5>
+          <hr class="mt-0">
+          <div class="row">
+            <!-- <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label>नॉमिनी का प्रकार</mat-label>
+                <mat-select formControlName="nominee_type"
+                            (selectionChange)="getNomineeRelation($event);">
+                  <mat-option value="0">स्वयं</mat-option>
+                  <mat-option value="1">रिश्तेदार</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error
+                *ngIf="control('nominee_type').invalid  && (control('nominee_type').dirty || control('nominee_type').touched)">
+                <mat-error *ngIf="control('nominee_type').errors!.pattern">नॉमिनी का प्रकार चुनना
+                  अनिवार्य
+                  है|</mat-error>
+              </mat-error>
+            </div>
+            <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label>नॉमिनी का सम्बन्ध</mat-label>
+                <mat-select formControlName="nominee_relation" autocomplete="off"
+                            (selectionChange)="patchSelfNominee($event)">
+                  <mat-option *ngFor="let nr of nomineeRelation;"
+                              [value]="nr.rel_id">{{nr.rel_name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div> -->
+            <!-- <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label>नॉमिनी का आधार क्रमाँक</mat-label>
+                <input matInput isNumber maxlength="12"
+                       [readonly]="control('nominee_relation').value==28"
+                       formControlName="nominee_aadhar_number" (focusout)="nomineeAadharCheck()">
+              </mat-form-field>
+              <mat-error
+                *ngIf="control('nominee_aadhar_number').invalid  && (control('nominee_aadhar_number').dirty || control('nominee_aadhar_number').touched)">
+                <mat-error *ngIf="control('nominee_aadhar_number').errors!.pattern">नॉमिनी का आधार नंबर
+                  12
+                  अंकों का होना
+                  चाहिए |</mat-error>
+                <mat-error
+                  *ngIf="control('nominee_aadhar_number').errors!.invalidAadhar && !control('nominee_aadhar_number').errors!.pattern">नॉमिनी
+                  का आधार नंबर गलत है |</mat-error>
+                <mat-error *ngIf="control('nominee_aadhar_number').errors!.required">नॉमिनी
+                  का आधार नंबर अनिवार्य है |</mat-error>
+              </mat-error>
+            </div> -->
+            <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Desigantion Name (In Hindi) </mat-label>
+                <input matInput type="text" formControlName="designation_name_hi"
+                       >
+              </mat-form-field>
+              <mat-error
+                *ngIf="control('designation_name_hi').invalid  && (control('designation_name_hi').dirty || control('designation_name_hi').touched)">
+                <mat-error *ngIf="control('designation_name_hi').errors!.pattern"> Please Enter in English</mat-error>
+                
+              </mat-error>
+            </div>
+            <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Desigantion Name (In English) </mat-label>
+                <input matInput type="text" formControlName="designation_name_en"
+                       >
+              </mat-form-field>
+              <mat-error
+                *ngIf="control('designation_name_en').invalid  && (control('designation_name_en').dirty || control('designation_name_en').touched)">
+                <mat-error *ngIf="control('designation_name_en').errors!.pattern"> Please Enter in English</mat-error>
+                
+              </mat-error>
+            </div>
+            <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label> Name </mat-label>
+                <input matInput type="email" formControlName="name"
+                       >
+              </mat-form-field>
+              <mat-error
+                *ngIf="control('name').invalid  && (control('name').dirty || control('name').touched)">
+                <mat-error *ngIf="control('name').errors!.pattern"> Please Enter Email Id</mat-error>
+                
+              </mat-error>
+            </div>
+            <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label> Email Id </mat-label>
+                <input matInput type="email" formControlName="email_id"
+                       >
+              </mat-form-field>
+              <mat-error
+                *ngIf="control('email_id').invalid  && (control('email_id').dirty || control('email_id').touched)">
+                <mat-error *ngIf="control('email_id').errors!.pattern"> Please Enter Email Id</mat-error>
+                
+              </mat-error>
+            </div>
+          </div>
+          <div class="row" >
+            <div class="col-sm-3 mb-1">
+              <mat-label>Gender</mat-label>
+              <mat-radio-group formControlName='gender' aria-label="Select an option" (change)="ongenderchange()">
+                <mat-radio-button value="1">Male</mat-radio-button>
+                <mat-radio-button value="2">Female</mat-radio-button>
+              </mat-radio-group>
+
+            </div>
+            <div class="col-sm-3 mb-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Section Name</mat-label>
+                <input matInput type="text" formControlName="section_name"
+                       >
+              </mat-form-field>
+              <mat-error
+                *ngIf="control('section_name').invalid  && (control('section_name').dirty || control('section_name').touched)">
+                <mat-error *ngIf="control('section_name').errors!.pattern"> Please Enter Section Name</mat-error>
+                
+              </mat-error>
+            </div>
+            <div class="col-sm-3 mb-1">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Caste</mat-label>
+                <mat-select formControlName="caste_code" (selectionChange)="oncastechange()">
+                  
+                    <mat-option  *ngFor="let c of castelist"  [value]="c.caste_code">{{c.caste_name}}</mat-option>
+                 
+                </mat-select>
+                <mat-error >
+                  <mat-error>
+                    <strong>Required! </strong> Please select cast type
+                  </mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3 mb-1">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Religions</mat-label>
+                <mat-select formControlName="religion_code" (selectionChange)="onreligionchange()">
+                  
+                    <mat-option  *ngFor="let r of religionlist"  [value]="r.religion_code">{{r.religion_name}}</mat-option>
+                 
+                </mat-select>
+                <mat-error >
+                  <mat-error>
+                    <strong>Required! </strong> Please select cast type
+                  </mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 mb-1">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Appointment Category</mat-label>
+                <mat-select formControlName="religion_code" (selectionChange)="onreligionchange()">
+                  
+                    <mat-option  *ngFor="let r of religionlist"  [value]="r.religion_code">{{r.religion_name}}</mat-option>
+                 
+                </mat-select>
+                <mat-error >
+                  <mat-error>
+                    <strong>Required! </strong> Please select cast type
+                  </mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          
+
+
+          <!-- <section class="mt-1"
+          [class.text-red]="control('is_nominee').invalid  && (control('is_nominee').dirty || control('is_nominee').touched)">
+          <mat-checkbox formControlName="is_nominee">
+              <b>दर्ज किया गया नॉमिनी आधार नंबर समिति के किसी भी कर्मचारी का नहीं है |</b>
+          </mat-checkbox>
+      </section> -->
+        </mat-card-content>
+      </mat-card>
+      <br>
+      <div class="d-flex justify-content-center align-items-center">
+        <button mat-raised-button color="primary" (click)="updateNominneDetails()">सुरक्षित करें</button>
+      </div>
+    </div>
+  </form>

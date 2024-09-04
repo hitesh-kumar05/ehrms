@@ -1,0 +1,99 @@
+<div class="auth-page">
+  <div class="auth-page__logo">
+    <div class="auth-page__logo-wrapper">
+      <img class="auth-page__logo-img" src="assets/cg-logo.webp" alt="logo" width="20%">
+      <div class="col-md-12 ">
+        <h1 class="text-white h1 text-center">
+          <strong>एकीकृत किसान पोर्टल</strong>
+        </h1>
+        <h3 class="text-white text-center">
+          <strong>छत्तीसगढ़ शासन</strong>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="auth-page__content-block">
+    <div class="auth-page__content-wrapper">
+      <div class="auth-page__group">
+<!--        <div style="text-align: right;">-->
+<!--          <a href="https://kisan.cg.nic.in/" target="_self" class="home">-->
+<!--            <mat-icon>home</mat-icon>-->
+<!--          </a>-->
+<!--        </div>-->
+        <div class="col-md-12 text-center">
+          <img class="auth-page__logo_main-img" src="assets/cg-logo.webp" alt="logo" width="30%">
+        </div>
+        <h4 class="auth-page__group-title">
+          <b>निम्नानुसार जानकारी प्रविष्ठ किये जाकर, सुरक्षित किये जाने पर ही लॉग इन होगा|</b>
+        </h4>
+        <h5 class="login-mobile-content text-center">एकीकृत किसान पोर्टल</h5>
+        <div class="auth-page__border-wrapper">
+          <div class="auth-page__border-line"></div>
+          <p class="auth-page__border-title">***</p>
+          <div class="auth-page__border-line"></div>
+        </div>
+        <p class="text-center my-1" style="font-size: 14px">{{user.type_name}} - {{user.name}}({{user.user_id}})</p>
+
+        <form [formGroup]="userDetailsFormGroup" (ngSubmit)="saveUserDetails()">
+          <mat-form-field appearance="outline" class="form__input w-100">
+            <mat-label>{{lableforname1}}</mat-label>
+            <input matInput
+                   [placeholder]="lableforname1" formControlName="user1name">
+          </mat-form-field>
+
+          <mat-error *ngIf="control('user1name').invalid  && (control('user1name').dirty || control('user1name').touched)">
+            <mat-error *ngIf="control('user1name').errors!.pattern"> {{lableforname1}} का प्रारूप सही नहीं है |</mat-error>
+            <mat-error *ngIf="control('user1name').errors!.required"> {{lableforname1}} भरना अनिवार्य है|</mat-error>
+            <mat-error *ngIf="control('user1name').errors!.minlength"> {{lableforname1}} न्यूनतम सीमा से कम है |</mat-error>
+          </mat-error>
+
+          <mat-form-field appearance="outline" class="form__input w-100">
+            <mat-label>{{lableformob1}}</mat-label>
+            <input matInput isNumber maxlength="10"
+                   [placeholder]="lableformob1" formControlName="user1mob">
+          </mat-form-field>
+          <mat-error *ngIf="control('user1mob').invalid  && (control('user1mob').dirty || control('user1mob').touched)">
+            <mat-error *ngIf="control('user1mob').errors!.required"> {{lableformob1}} भरना अनिवार्य है|</mat-error>
+            <mat-error *ngIf="control('user1mob').errors!.pattern"> {{lableformob1}} गलत है|</mat-error>
+          </mat-error>
+
+            <ng-container *ngIf="showSecondUserDetails">
+            <mat-form-field appearance="outline" class="form__input w-100">
+              <mat-label>{{lableforname2}}</mat-label>
+              <input matInput
+                     [placeholder]="lableforname2" formControlName="user2name">
+            </mat-form-field>
+            <mat-error *ngIf="control('user2name').invalid  && (control('user2name').dirty || control('user2name').touched)">
+              <mat-error *ngIf="control('user2name').errors!.required"> {{lableforname2}} भरना अनिवार्य है|</mat-error>
+              <mat-error *ngIf="control('user2name').errors!.minlength"> {{lableforname2}} न्यूनतम सीमा से कम है |</mat-error>
+              <mat-error *ngIf="control('user2name').errors!.pattern"> {{lableforname2}} का प्रारूप सही नहीं है |</mat-error>
+            </mat-error>
+
+          <mat-form-field appearance="outline" class="form__input w-100">
+            <mat-label>{{lableformob2}}</mat-label>
+            <input matInput isNumber maxlength="10"
+                   [placeholder]="lableformob2" formControlName="user2mob">
+          </mat-form-field>
+            <mat-error *ngIf="control('user2mob').invalid  && (control('user2mob').dirty || control('user2mob').touched)">
+              <mat-error *ngIf="control('user2mob').errors!.required"> {{lableformob2}} भरना अनिवार्य है|</mat-error>
+              <mat-error *ngIf="control('user2mob').errors!.pattern"> {{lableformob2}} गलत है|</mat-error>
+            </mat-error>
+            </ng-container>
+          <div>
+            <button class="form-actions__login col-12 mt-3" mat-raised-button color="primary"
+                    type="submit">सुरक्षित करें
+            </button>
+            <button mat-button style="color: blue;" (click)="logout()">Back To Login</button>
+          </div>
+        </form>
+      </div>
+      <p class="auth-page__footer-title text-center m-2">
+        <strong>Disclaimer</strong>
+        <br/> © 2023-{{ todayDate | date: 'y' }} | Govt. of Chhattisgarh
+        <br/>Designed, Developed And Hosted By <a href="https://chhattisgarh.nic.in/"> National Informatics Centre,
+        Chhattisgarh.</a>
+      </p>
+    </div>
+  </div>
+</div>
+

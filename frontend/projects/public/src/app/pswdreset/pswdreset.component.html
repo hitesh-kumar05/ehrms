@@ -1,0 +1,88 @@
+<div class="auth-page">
+  <div class="auth-page__logo">
+    <div class="auth-page__logo-wrapper">
+      <img class="auth-page__logo-img" src="assets/cg-logo.webp" alt="logo" width="20%">
+      <div class="col-md-12 ">
+        <h1 class="text-white h1 text-center">
+          <strong>एकीकृत किसान पोर्टल</strong>
+        </h1>
+        <h3 class="text-white text-center">
+          <strong>छत्तीसगढ़ शासन</strong>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="auth-page__content-block">
+    <div class="auth-page__content-wrapper">
+      <div class="auth-page__group">
+        <div style="text-align: right;">
+          <a href="https://kisan.cg.nic.in/" target="_self" class="home">
+            <mat-icon>home</mat-icon>
+          </a>
+        </div>
+        <div class="col-md-12 text-center">
+          <img class="auth-page__logo_main-img" src="assets/cg-logo.webp" alt="logo" width="30%">
+        </div>
+        <h4 class="auth-page__group-title">
+          <b>पासवर्ड बदलें</b>
+        </h4>
+        <h5 class="login-mobile-content text-center">एकीकृत किसान पोर्टल</h5>
+        <div class="auth-page__border-wrapper">
+          <div class="auth-page__border-line"></div>
+          <p class="auth-page__border-title">***</p>
+          <div class="auth-page__border-line"></div>
+        </div>
+        <p class="text-center my-0" style="font-size: 14px">{{user.type_name}} - {{user.name}}</p>
+        <form [formGroup]="psswordResetForm" (ngSubmit)="resetPassword()">
+          <mat-form-field appearance="outline" class="form__input w-100">
+            <mat-label>यूजर आई. डी.</mat-label>
+            <input matInput placeholder="यूजर आई. डी." formControlName="user_id" readonly="true">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form__input w-100">
+            <mat-label>नया पासवर्ड</mat-label>
+            <input matInput appDetectCapsLock (capsLockOn)="capsLockDetect($event)"
+                   placeholder="नया  पासवर्ड" formControlName="password"
+                   type="{{ showPassword ? 'text' : 'password' }}">
+            <mat-icon matSuffix [hidden]="showPassword"
+                      (click)="togglePasswordVisibility()">visibility_off
+            </mat-icon>
+            <mat-icon matSuffix [hidden]="!showPassword"
+                      (click)="togglePasswordVisibility()">visibility
+            </mat-icon>
+          </mat-form-field>
+          <mat-error *ngIf="control('password').invalid  && (control('password').dirty || control('password').touched)">
+            <mat-error *ngIf="control('password').errors!.required"> पासवर्ड भरना अनिवार्य है|</mat-error>
+            <mat-error *ngIf="control('password').errors!.pattern">पासवर्ड में न्यूनतम 8 अक्षर और अधिकतम 15 अक्षर होना
+              चाहिए। जिसमें कम से कम 1 कैपिटल, 1 स्मॉल , 1 संख्या और 1 विशेष अक्षर होना अनिवार्य है ।
+            </mat-error>
+          </mat-error>
+          <mat-form-field appearance="outline" class="form__input w-100">
+            <mat-label>कन्फर्म पासवर्ड</mat-label>
+            <input matInput appDetectCapsLock (capsLockOn)="capsLockDetect($event)"
+                   placeholder=" कन्फर्म पासवर्ड " formControlName="cpassword" type="password">
+          </mat-form-field>
+          <mat-error
+            *ngIf="control('cpassword').invalid  && (control('cpassword').dirty || control('cpassword').touched)">
+            पासवर्ड
+            गलत है |
+          </mat-error>
+          <div>
+            <p *ngIf="isCapsLockIsOn" style="color: black; font-weight: bolder;">Capslock Is On</p>
+          </div>
+          <div>
+            <button class="form-actions__login col-12 mt-3" mat-raised-button color="primary"
+                    type="submit">पासवर्ड बदलें
+            </button>
+            <button mat-button style="color: blue;" (click)="logout()">Back To Login</button>
+          </div>
+        </form>
+      </div>
+      <p class="auth-page__footer-title text-center m-2">
+        <strong>Disclaimer</strong>
+        <br/> © 2023-{{ todayDate | date: 'y' }} | Govt. of Chhattisgarh
+        <br/>Designed, Developed And Hosted By <a href="https://chhattisgarh.nic.in/"> National Informatics Centre,
+        Chhattisgarh.</a>
+      </p>
+    </div>
+  </div>
+</div>

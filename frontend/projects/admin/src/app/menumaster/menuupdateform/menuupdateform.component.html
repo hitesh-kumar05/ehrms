@@ -1,0 +1,61 @@
+<form [formGroup]="basicFormGroup">
+    <mat-dialog-content>
+        <div class="mb-1">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="mb-1">
+            <mat-form-field appearance="outline">
+                <mat-label>Route</mat-label>
+                <input matInput formControlName="route">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-1">
+                <mat-form-field appearance="outline">
+                    <mat-label>Menu For</mat-label>
+                    <mat-select formControlName="usertype">
+                        <mat-option [value]="2">Admin</mat-option>
+                        <mat-option *ngFor="let user of users" [value]="user.usertype">{{user.type_name_hi}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-6 mb-1">
+                <mat-form-field appearance="outline">
+                    <mat-label>Menu Icon</mat-label>
+                    <input formControlName="icon" matInput>
+                    <!--                    <mat-select formControlName="icon">-->
+                    <!--                        <mat-option value="bi-speedometer2"><i class="bi bi-speedometer2"></i>&nbsp; Speedometer</mat-option>-->
+                    <!--                        <mat-option value="bi-pen"><i class="bi bi-pen"></i>&nbsp;Pen</mat-option>-->
+                    <!--                        <mat-option value="bi-file-text"><i class="bi bi-file-text"></i>&nbsp; File</mat-option>-->
+                    <!--                    </mat-select>-->
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-1">
+                <mat-form-field appearance="outline">
+                    <mat-label>Order</mat-label>
+                    <input matInput type="number" formControlName="menuOrder">
+                </mat-form-field>
+            </div>
+            <div class="col-6 mb-1">
+                <mat-form-field appearance="outline">
+                    <mat-label>Menu Type</mat-label>
+                    <mat-select formControlName="children">
+                        <mat-option [value]="parent_type">Parent</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <mat-checkbox formControlName="is_new">Do you want to add New Tag?</mat-checkbox>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+        <button mat-raised-button mat-dialog-close color="accent">Close</button>
+        <button mat-raised-button color="primary" (click)="saveMenu()">Save Data</button>
+    </mat-dialog-actions>
+</form>

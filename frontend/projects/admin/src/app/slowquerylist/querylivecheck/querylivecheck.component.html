@@ -1,0 +1,52 @@
+<ng-container *ngIf="is_read && !is_error">
+    <mat-card>
+        <mat-card-content>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>select_type</th>
+                        <th>table</th>
+                        <th>type</th>
+                        <th>possible_keys</th>
+                        <th>key</th>
+                        <th>key_len</th>
+                        <th>ref</th>
+                        <th>rows</th>
+                        <th>Extra</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let data of data">
+                        <td>{{data.id}}</td>
+                        <td>{{data.select_type}}</td>
+                        <td>{{data.table}}</td>
+                        <td>{{data.type}}</td>
+                        <td>{{data.possible_keys}}</td>
+                        <td>{{data.key}}</td>
+                        <td>{{data.key_len}}</td>
+                        <td>{{data.ref}}</td>
+                        <td>{{data.rows}}</td>
+                        <td>{{data.Extra}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+<ng-container *ngIf="!is_read && !is_error">
+    <mat-card>
+        <mat-card-content>
+            <div class="fs-6 text-center">Loading.....Please Wait</div>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+<ng-container *ngIf="is_error">
+    <mat-card>
+        <mat-card-content>
+            <div class="fs-6 text-center">Something went wrong....</div>
+        </mat-card-content>
+    </mat-card>
+</ng-container>

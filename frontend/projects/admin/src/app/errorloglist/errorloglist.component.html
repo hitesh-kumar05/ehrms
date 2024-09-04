@@ -1,0 +1,54 @@
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="filterFormGroup">
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="outline">
+                        <mat-label>User ID</mat-label>
+                        <input matInput formControlName="user_id">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <button (click)="getData()" class="w-100 p-1 mt-2" mat-raised-button color="primary">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <td>SN</td>
+                    <th>Error</th>
+                    <th>Api</th>
+                    <th>User</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngIf="is_read && dataSource.length>0">
+                    <tr *ngFor="let data of dataSource">
+                        <td>{{data.id}}</td>
+                        <td class="text-start query">{{data.err}}</td>
+                        <td>{{data.api_name}} </td>
+                        <td>{{data.user_id}}</td>
+                        <td style="min-width: 100px">{{data.time | date: 'dd-MM-yyyy hh:ss aa'}}</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="is_read && dataSource.length==0">
+                    <tr>
+                        <td colspan="5" class="text-center">No Record Found</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="!is_read">
+                    <tr>
+                        <td colspan="5" class="text-center">Loading, Please Wait....</td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+                       [pageSizeOptions]="pageSizeOptions" showFirstLastButtons aria-label="Select page"
+                       (page)="pageChanged($event)"></mat-paginator>
+    </mat-card-content>
+</mat-card>

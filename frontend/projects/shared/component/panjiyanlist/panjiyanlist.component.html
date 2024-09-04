@@ -1,0 +1,111 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="basicFormGroup" (submit)="getReport()">
+      <div class="row mb-0">
+        <div class="col-sm-2 col-6">
+          <mat-form-field appearance="outline">
+            <mat-label>जिला चुने</mat-label>
+            <mat-select (selectionChange)="getTehsil();validateSelection()" formControlName="district_id">
+              <mat-option value="">सभी जिला</mat-option>
+              @for (district of districtList; track $index) {
+                <mat-option [value]="district.district_id">{{ district.District_Name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2 col-6">
+          <mat-form-field appearance="outline">
+            <mat-label>तहसील चुने</mat-label>
+            <mat-select (selectionChange)="getSociety();validateSelection()" formControlName="tehsil_id">
+              <mat-option value="">सभी तहसील</mat-option>
+              @for (rec of tehsilList; track $index) {
+                <mat-option [value]="rec.tehsil_id">{{ rec.tehsil_name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2 col-6">
+          <mat-form-field appearance="outline">
+            <mat-label>समिति चुने</mat-label>
+            <mat-select formControlName="society_id"
+                        (selectionChange)="validateSelection()">
+              <mat-option value="">सभी समिति</mat-option>
+              @for (rec of societyList; track $index) {
+                <mat-option [value]="rec.Society_Id">{{ rec.Society_Name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3 col-6">
+          <mat-form-field appearance="outline">
+            <mat-label>एकीकृत आईडी/किसान कोड</mat-label>
+            <input matInput formControlName="search_value">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3 col-6">
+          <button type="submit" mat-raised-button class="py-3 px-4 mx-1 h-auto" color="primary">Get Data</button>
+        </div>
+      </div>
+    </form>
+    <hr class="mt-0">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="farmerList" matSort class="table table-bordered table-hover">
+        <ng-container matColumnDef="soceity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>समिति</th>
+          <td mat-cell *matCellDef="let row;" class="text-center">{{ row.Society_Name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="farmer_code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>किसान कोड</th>
+          <td mat-cell *matCellDef="let row;" class="text-center">{{ row.farmer_code }}</td>
+        </ng-container>
+        <ng-container matColumnDef="villcdname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ग्राम</th>
+          <td mat-cell *matCellDef="let row;" class="text-center">{{ row.villcdname }}</td>
+        </ng-container>
+        <ng-container matColumnDef="farmer_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>किसान का नाम</th>
+          <td mat-cell *matCellDef="let row;" class="text-start">{{ row.farmer_name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="uf_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>एकीकृत आईडी</th>
+          <td mat-cell *matCellDef="let row;" class="text-center">{{ row.uf_id }}</td>
+        </ng-container>
+        <ng-container matColumnDef="father_name">
+          <th mat-header-cell *matHeaderCellDef>पिता/पति का नाम</th>
+          <td mat-cell *matCellDef="let row;" class="text-start">{{ row.father_name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="total_land">
+          <th mat-header-cell *matHeaderCellDef>कुल पंजीकृत रकबा (हे.)</th>
+          <td mat-cell *matCellDef="let row;" class="text-center">{{ row.total_land_area | number :'1.4' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="total_crop">
+          <th mat-header-cell *matHeaderCellDef>कुल फ़सल रकबा (हे.)</th>
+          <td mat-cell *matCellDef="let row;" class="text-center">{{ row.total_crop_area | number :'1.4' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="paddy_crop">
+          <th mat-header-cell *matHeaderCellDef>धान के लिए पंजीकृत फसल (हे.)</th>
+          <td mat-cell *matCellDef="let row;" class="text-center">{{ row.total_paddy_area | number :'1.4' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="see">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row;let i = index;" class="text-center" style="width: 100px">
+            <button class="btn btn-outline-primary" style="font-size: 12px" (click)="encryptAndNavigate(row.fs_id)">
+              पावती देखें
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell text-center" [attr.colspan]="displayedColumns.length">
+            <b *ngIf="!is_read">लोड हो रहा कृपया प्रतीक्षा करें| </b>
+            <b *ngIf="is_read">कृषकों की सूची उपलब्ध नहीं हैं </b>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions" showFirstLastButtons aria-label="Select page"
+                   (page)="pageChanged($event)"></mat-paginator>
+  </mat-card-content>
+</mat-card>

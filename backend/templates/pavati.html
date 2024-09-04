@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4 Document</title>
+    <style>
+        @page {
+            margin: 15px;
+            size: A4;
+            margin: 1cm;
+            border: 1px solid black;
+        }
+
+        body {
+            margin: 0;
+            /* Reset body margin */
+            font-size: 14px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 5px;
+            font-size: 15px;
+            font-weight: bold !important;
+        }
+
+        header {
+            border-bottom: 1px solid #000;
+            padding-bottom: 15px !important;
+        }
+
+        footer {
+            /* margin-top: 100px; */
+            /* padding: 50px !important; */
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100% !important;
+        }
+
+        thead>tr>td,
+        thead>tr>th,
+        .table-footer>td {
+            font-size: 15px;
+            text-align: center !important;
+            font-weight: bold !important;
+            text-decoration: underline !important;
+            border: 1px solid #000
+        }
+
+        td {
+            padding: 2px;
+        }
+
+        table>tbody>tr>td {
+            border: 0.7px solid #000;
+            text-align: center !important;
+            font-size: 15px;
+        }
+
+        /* Watermark style */
+        .watermark::before,
+        .watermark::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+
+            color: rgba(0, 0, 0, 0.2);
+            z-index: 0;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .watermark::before {
+            content: '  Unified Farmer Portal';
+            font-size: 80px;
+            margin-top: -20px;
+        }
+
+        .watermark::after {
+            content: 'For Internal Use Only';
+            font-size: 40px;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body class="watermark">
+    <div class="page">
+        <header style="text-align: center;">
+            <h2 style="margin-bottom: 5px;">जिला सहकारी समिति, {{basic.society_name}}</h3>
+                खरीफ वर्ष 2024 - पावती/रसीद
+        </header>
+        <main>
+            <h3>कृषक की व्यक्तिगत जानकारी</h3>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>कृषक का नाम</th>
+                            <th>एकीकृत आईडी</th>
+                            <th>किसान कोड</th>
+                            <th>समिति</th>
+                            <th>
+                                {{basic.registration_type}}
+                                दिनांक</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{basic.farmer_name_hi}} {{basic.relation}} {{basic.father_name}}</td>
+                            <td>{{basic.uf_id}}</td>
+                            <td>{{basic.farmer_code}}</td>
+                            <td>{{basic.society_name}}</td>
+                            <td>{{basic.dtstamp}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                निवास ग्राम - {{basic.villcdname}} (हल्का - {{basic.halka}}), तहसील -
+                                {{basic.tehcdname}}, जिला - {{basic.cdname}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>जन्म तिथि</th>
+                            <th>वर्ग</th>
+                            <th>आधार नम्बर</th>
+                            <th>मोबाइल नम्बर</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{basic.dob}}</td>
+                            <td>{{basic.caste_name}}</td>
+                            <td>{{basic.aadhar_number}}</td>
+                            <td>{{basic.mobile_no}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>नॉमिनी का विवरण</h3>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>नॉमिनी का प्रकार</th>
+                            <th>नॉमिनी का सम्बन्ध</th>
+                            <th>नॉमिनी का नाम</th>
+                            <th>नॉमिनी का आधार</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{basic.nominee_type_name}}</td>
+                            <td>{{basic.nominee_relation}}</td>
+                            <td>{{basic.nominee_name}}</td>
+                            <td>{{basic.nominee_aadhar}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>बैंक का विवरण</h3>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>बैंक का जिला</th>
+                            <th>बैंक का नाम</th>
+                            <th>ब्रांच</th>
+                            <th>IFSC CODE</th>
+                            <th>खाता न.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{basic.bank_district_name}}</td>
+                            <td>{{basic.bank_name}}</td>
+                            <td>{{basic.branch_name}}</td>
+                            <td>{{basic.ifsc_code}}</td>
+                            <td>{{basic.account_no}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>खरीफ वर्ष 2024 के लिये पंजीकृत भूमि एवं फसल का महायोग</h3>
+            <table>
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>राजस्व ग्राम</th>
+                  <th>वन अधिकार पट्टा</th>
+                  <th>वन ग्राम</th>
+                  <th>असर्वेक्षित ग्राम</th>
+                  <th>कुल</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="text-align: left !important;">पंजीकृत भूमि</td>
+                  <td>{{ s.rg_land }}</td>
+                  <td>{{ s.vp_land }}</td>
+                  <td>{{ s.vg_land }}</td>
+                  <td>{{ s.us_land }}</td>
+                  <td>{{ basic.total_land_area }}</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left !important;">धान के लिए पंजीकृत फसल</td>
+                  <td>{{ s.rg_paddy }}</td>
+                  <td>{{ s.vp_paddy }}</td>
+                  <td>{{ s.vg_paddy }}</td>
+                  <td>{{ s.us_paddy }}</td>
+                  <td>{{ basic.total_paddy_area  }}</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left !important;">पंजीकृत फसल (सभी फसल)</td>
+                  <td>{{ s.rg_crop }}</td>
+                  <td>{{ s.vp_crop }}</td>
+                  <td>{{ s.vg_crop }}</td>
+                  <td>{{ s.us_crop }}</td>
+                  <td>{{ basic.total_crop_area }}</td>
+                </tr>
+                </tbody>
+              </table>
+
+            <h3>बोये गए / बोये जाने वाले कृषि एवं उद्यानिकी फसलों का विवरण (खरीफ वर्ष 2024)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">ग्राम</th>
+                        <th rowspan="2">ग्राम का प्रकार</th>
+                        <th rowspan="2">खसरा न.</th>
+                        <th rowspan="2">रकबा(हेक्ट में)</th>
+                        <th rowspan="2">भूस्वामी का नाम</th>
+                        <th colspan="2">फसल का विवरण</th>
+                    </tr>
+                    <tr>
+                        <th>फसल</th>
+                        <th>रकबा(हेक्ट में)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each lands as | land |}}
+                    {{#if is_non_pc}}
+                    <tr>
+                        <td rowspan="1">{{land.villcdname}} (हल्का - {{land.halka}})</td>
+                        <td rowspan="1">{{land.land_type_name_hi}}</td>
+                        <td rowspan="1">{{land.khasra_no}}</td>
+                        <td rowspan="1">{{land.land_area_d}}</td>
+                        <td rowspan="1">{{land.OwnerName }}</td>
+                        <td colspan="2">
+                            {{#each land.non_pc_crop as | crop |}}
+                            <table class="inner">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:0px !important;"> {{crop.crop_name_hi}}</td>
+                                        <td style="border:0px !important;width: 80px;"> {{crop.crop_area_d}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {{/each}}
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{/each}}
+                </tbody>
+            </table>
+            {{# if is_pc}}
+            <h3> <b>धान फसल के स्थान पर कृषक द्वारा बोये गए / बोये जाने वाले फसलों का विवरण</b></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">ग्राम</th>
+                        <th rowspan="2">ग्राम का प्रकार</th>
+                        <th rowspan="2">खसरा न.</th>
+                        <th rowspan="2">रकबा(हेक्ट में)</th>
+                        <th rowspan="2">भूस्वामी का नाम</th>
+                        <th colspan="2">फसल का विवरण</th>
+                    </tr>
+                    <tr>
+                        <th>फसल</th>
+                        <th>रकबा(हेक्ट में)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each lands as | land |}}
+                    {{#if land.is_pc}}
+                    <tr>
+                        <td rowspan="1">{{land.villcdname}} (हल्का - {{land.halka}})</td>
+                        <td rowspan="1">{{land.land_type_name_hi}}</td>
+                        <td rowspan="1">{{land.khasra_no}}</td>
+                        <td rowspan="1">{{land.land_area_d}}</td>
+                        <td rowspan="1">{{land.OwnerName }}</td>
+                        <td colspan="2">
+                            {{#each land.pc_crop as | crop |}}
+                            <table class="inner">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:0px !important"> {{crop.crop_name_hi}}</td>
+                                        <td style="border:0px !important;width: 80px;"> {{crop.crop_area_d}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {{/each}}
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{/each}}
+                </tbody>
+            </table>
+            {{/if}}
+        </main>
+        <footer style="display: flex;justify-content: space-between;">
+            <div style="text-align: center;border: 1px solid #000; padding: 5px;flex: 1;"><b>कर्मचारी का नाम</b></div>
+            <div style="text-align: center;border: 1px solid #000; padding: 5px;flex: 1;"></div>
+            <div style="text-align: center;border: 1px solid #000; padding: 5px;flex: 1;"><b>हस्ताक्षर</b></div>
+            <div style="text-align: center;border: 1px solid #000; padding: 5px;flex: 1;"></div>
+            <div style="text-align: center;border: 1px solid #000; padding: 5px;flex: 1;"><b>दिनांक</b></div>
+            <div style="text-align: center;border: 1px solid #000; padding: 5px;flex: 1;"></div>
+        </footer>
+        <!-- <footer style="display: flex;justify-content: space-between;">
+            <div></div>
+            <div>
+                <div>कर्मचारी का नाम एवं हस्ताक्षर</div>
+                <div>दिनांक: _____/_____/2024</div>
+            </div>
+        </footer> -->
+    </div>
+</body>
+
+</html>

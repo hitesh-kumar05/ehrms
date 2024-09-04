@@ -1,0 +1,40 @@
+<form [formGroup]="mainForm">
+    <div>
+      <mat-card>
+        <mat-card-content>
+          <h5 class="text_primary">
+            <b>Office Level Details</b>
+          </h5>
+          <hr class="mt-0">
+          <div class="row">
+            <div class="col-sm-3 mb-1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Office Level (In English) </mat-label>
+                  <input matInput type="text" formControlName="office_level_name_en"
+                         >
+                </mat-form-field>
+                <mat-error *ngIf="control('office_level_name_en').invalid  && (control('office_level_name_en').dirty || control('office_level_name_en').touched)">
+                  <mat-error *ngIf="control('office_level_name_en').errors!.pattern"> Please Enter in English</mat-error>
+                  
+                </mat-error>
+              </div>
+              <div class="col-sm-3 mb-1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Office Level (In Hindi) </mat-label>
+                  <input matInput type="text" formControlName="office_level_name_hi">
+                </mat-form-field>
+                <mat-error
+                  *ngIf="control('office_level_name_hi').invalid  && (control('office_level_name_hi').dirty || control('office_level_name_hi').touched)">
+                  <mat-error *ngIf="control('office_level_name_hi').errors!.pattern"> Please Enter in English</mat-error>
+                  
+                </mat-error>
+              </div>
+            </div>
+        </mat-card-content>
+        </mat-card>
+        <br>
+        <div class="d-flex justify-content-center align-items-center">
+          <button mat-raised-button color="primary" (click)="addOfficeLevel()">सुरक्षित करें</button>
+        </div>
+      </div>
+    </form>

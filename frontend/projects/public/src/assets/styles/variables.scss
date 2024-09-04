@@ -1,0 +1,26 @@
+@import "colors";
+
+//== Viewports
+
+$extra-small: 576px;
+$small: 576px;
+$medium: 768px;
+$normal: 1024px;
+$large: 992px;
+$extra-large: 1200px;
+
+
+//== Scroll bar
+
+$scrollbar-track-color: rgb(8 68 104);//$light-grey;
+$scrollbar-track-piece-color: $white;
+$scrollbar-thumb-color: rgb(8 68 104);//$light-grey;
+$scrollbar-corner-color: rgb(8 68 104);//$light-grey;
+
+//== Footer
+
+$footer-height: 48px;
+$footer-link-color: $blue;
+$footer-icon-color: $gray-06;
+$footer-icon-background-color-hover: $black-08;
+

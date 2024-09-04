@@ -1,0 +1,88 @@
+<div class="auth-page">
+  <div class="auth-page__logo">
+    <div class="auth-page__logo-wrapper">
+      <img class="auth-page__logo-img" src="assets/cg-logo.webp" alt="logo" width="20%">
+      <div class="col-md-12 ">
+        <h1 class="text-bg-danger h1 text-center">
+          <strong>ई - मानव संसाधन प्रबंधन प्रणाली (e-HRMS)</strong>
+        </h1>
+        <h3 class="text-white text-center">
+          <strong>छत्तीसगढ़ शासन</strong>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="auth-page__content-block">
+    <div class="auth-page__content-wrapper">
+      <div class="auth-page__group">
+        <div style="text-align: right;">
+          <a href="" target="_self" class="home">
+            <mat-icon>home</mat-icon>
+          </a>
+        </div>
+        <div class="col-md-12 text-center">
+          <img class="auth-page__logo_main-img" src="assets/cg-logo.webp" alt="logo" width="30%">
+        </div>
+        <h4 class="auth-page__group-title" style="font-size: 14px;line-height: 1.5">
+          <b>यूजर आईडी और पासवर्ड दर्ज करें |</b>
+        </h4>
+        <h5 class="login-mobile-content text-center">एकीकृत किसान पोर्टल</h5>
+        <div class="auth-page__border-wrapper">
+          <div class="auth-page__border-line"></div>
+          <p class="auth-page__border-title">***</p>
+          <div class="auth-page__border-line"></div>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <!-- <mat-form-field appearance="outline" class="mb-2 form__input w-100">
+            <mat-label>खरीफ वर्ष का चयन करें</mat-label>
+            <mat-select formControlName="season_id">
+              <mat-option value="24">खरीफ वर्ष 2024</mat-option>
+              <mat-option value="23">खरीफ वर्ष 2023</mat-option>
+              <mat-option value="22">खरीफ वर्ष 2022</mat-option>
+                           <mat-option value="21">खरीफ वर्ष 2021</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <mat-form-field appearance="outline" class="mb-2 form__input w-100">
+            <mat-label>यूजर आई. डी.</mat-label>
+            <input matInput placeholder="यूजर आई. डी." name="user_id" formControlName="user_id" autocomplete="off">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mb-2 form__input w-100">
+            <mat-label>पासवर्ड</mat-label>
+            <input matInput appDetectCapsLock (capsLockOn)="capsLockDetect($event)" placeholder="पासवर्ड"
+                   formControlName="password" type="password" matTooltip="Password" autocomplete="off">
+          </mat-form-field>
+          <div>
+            <p *ngIf="isCapsLockIsOn" style="color: black; font-weight: bolder;">Capslock Is On</p>
+          </div>
+          <div class="form__input card p-2 mb-4">
+            <div class="row">
+              <div class="col-md-2 col-sm-2 col-lg-2 col-xl-2 p-2">
+                <a style="cursor: pointer;" (click)="getCaptcha()" tabindex="-1">
+                  <mat-icon>refresh</mat-icon>
+                </a>
+              </div>
+              <div class="col-md-10 col-sm-8 col-lg-8 col-xl-8 pl-4">
+                <span #captchaContainer></span>
+              </div>
+            </div>
+            <mat-form-field class="form__input" appearance="outline">
+              <mat-label>Captcha</mat-label>
+              <input matInput formControlName="captcha" autocomplete="off" type="text" maxlength="6"
+                     placeholder="Captcha"/>
+            </mat-form-field>
+          </div>
+          <div class="form-actions">
+            <button class="form-actions__login col-12" mat-raised-button color="primary" type="submit">लॉगिन
+            </button>
+          </div>
+        </form>
+      </div>
+      <p class="auth-page__footer-title text-center m-2">
+        <strong>Disclaimer</strong>
+        <br/>©2024-{{ todayDate | date: 'y' }} | Govt. of Chhattisgarh
+        <br/>Designed, Developed And Hosted By <a href="https://chhattisgarh.nic.in/"> National Informatics Centre,
+        Chhattisgarh.</a>
+      </p>
+    </div>
+  </div>
+</div>

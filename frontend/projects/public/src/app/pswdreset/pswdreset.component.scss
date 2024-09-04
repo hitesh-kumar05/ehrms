@@ -1,0 +1,193 @@
+@import "../../assets/styles/colors";
+@import "../../assets/styles/variables";
+@import "../../assets/styles/font";
+
+.auth-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  @media (max-width: $medium) {
+    flex-direction: column;
+  }
+
+  &__content-block {
+    width: 37%;
+    height: 100%;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+
+    @media (max-width: $medium) {
+      width: 100%;
+    }
+  }
+
+  &__content-wrapper {
+    width: 65%;
+    height: 100%;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @media (max-width: $small) {
+      width: 100%;
+    }
+
+    @media (min-width: $medium) and (max-width: $large) {
+      width: 100%;
+    }
+  }
+
+  &__group {
+    margin-top: 5px;
+  }
+
+  &__group-title {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: $fw-normal;
+    // margin-top: 37px;
+    letter-spacing: -0.7px;
+    text-align: center;
+    line-height: 37px;
+    color: $dark-grey;
+  }
+
+  &__border-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+  }
+
+  &__border-line {
+    height: 1px;
+    width: 100%;
+    background-color: $light-grey;
+    opacity: 0.3;
+  }
+
+  &__border-title {
+    font-size: $fs-xs;
+    padding: 0 16px;
+    margin: 0;
+    color: $dark-grey
+  }
+
+  &__logo {
+    width: 63%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%), url('../../assets/CultivatingLand.webp');
+    background-size: 100% 100%;
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  &__logo-wrapper {
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__logo-img {
+    margin-bottom: 50px;
+    padding: 0.5%;
+  }
+
+  &__logo_main-img {
+    padding: 0.5%;
+  }
+
+
+  &__footer-title {
+    color: $primary-color;
+    font-size: 10px;
+    opacity: 0.7;
+
+    a {
+      text-decoration: none;
+      color: $primary-color;
+    }
+  }
+}
+
+.form {
+  width: 100%;
+
+  &__input {
+    width: 100%;
+    margin-top: 6px;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__login {
+    margin-right: 10px;
+  }
+
+  &__forget {
+    font-size: 12px;
+    font-weight: $fw-lighter;
+    color: red;
+  }
+}
+
+.login-mobile-content {
+  display: none;
+
+  @media (max-width: $small) {
+    display: block;
+  }
+
+  @media (max-width: $medium) {
+    display: block;
+  }
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+  color: black;
+}
+
+::ng-deep .mat-form-field {
+  line-height: 1.5;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(.75);
+  width: 133.33333%;
+}
+
+.home {
+  border: 1px solid;
+  margin: unset;
+  padding: 16px 10px 7px;
+  border-radius: 25px;
+}
+
+mat-error {
+  margin-top: -20px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}

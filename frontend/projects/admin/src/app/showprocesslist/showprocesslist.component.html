@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-sm-3 col-6 mb-2 text-end">
+                <form [formGroup]="basicFormGroup">
+                    <mat-radio-group aria-label="Select an option" formControlName="server">
+                        <mat-radio-button class="me-3 mt-2" value="244">244</mat-radio-button>
+                        <mat-radio-button class="me-3  mt-2" value="176">176</mat-radio-button>
+                    </mat-radio-group>
+                </form>
+            </div>
+            <div class="col-sm-3  col-6  mb-1">
+                <button mat-raised-button color="primary" (click)="getData()" class="w-100 ">Refresh</button>
+            </div>
+            <div class="col-sm-3 col-6  mb-2">
+                <button mat-stroked-button color="warn" class="w-100">{{process.length}}</button>
+            </div>
+            <div class="col-sm-3 col-6  mb-1">
+                <button mat-raised-button color="primary" [routerLink]="['/process/size']" class="w-100">Check Size</button>
+            </div>
+
+        </div>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>SN</th>
+<!--                    <th>ID</th>-->
+<!--                    <th>User</th>-->
+                    <th>Host</th>
+                    <th>DB</th>
+<!--                    <th>Command</th>-->
+                    <th>Time</th>
+                    <th>INFO</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of process;let i=index">
+                    <td>{{i + 1}}</td>
+<!--                    <td>{{data.ID}}</td>-->
+<!--                    <td>{{data.USER}}</td>-->
+                    <td>{{data.HOST}}</td>
+                    <td>{{data.DB}}</td>
+<!--                    <td>{{data.COMMAND}}</td>-->
+                    <td>{{data.TIME}}</td>
+                    <td>{{data.INFO}}</td>
+                    <td>
+                        <button [disabled]="!checkKill(data.INFO)" (click)="killProcess(data.QUERY_ID, i)" mat-raised-button color="warn">Kill</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>

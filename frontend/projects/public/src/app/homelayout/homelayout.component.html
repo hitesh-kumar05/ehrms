@@ -1,0 +1,321 @@
+<header>
+  <div class="d-flex nav-header">
+    <div class="my-auto p-2 mx-2 me-3">
+      <img ngSrc="assets/cg-logo.webp" height="75" width="75" alt="UFP CG Logo">
+    </div>
+    <div class="my-auto">
+      <h5 class="mb-1"><h2><b>eHRMIS</b></h2></h5>
+      <b>Department of Health & Family Welfare, Govt. of Chhattisgarh</b>
+    </div>
+    <div class="ms-auto my-auto d-sm-block d-none" style="margin-right: 16px">
+      <div class="header-img">
+        <img class="img-fluid" src="assets/cm_cg.jpg" alt="Chief Minister">
+      </div>
+      <div class="header-img">
+        <img class="img-fluid" src="assets/cg_health_minister.jpg" alt="Health Minister">
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Resources</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Users
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"><b>ABC</b></a></li>
+              <hr class="dropdown-divider">
+              <li><a class="dropdown-item" href="#"><b>ABC</b></a></li>
+              <hr class="dropdown-divider">
+              <li><a class="dropdown-item" href="#"><b>ABC</b></a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item login-link" routerLink="/login" style="cursor: pointer;">
+            <a class="nav-link" aria-current="page" style="color: green;">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<section class="">
+  <div class="groups-section">
+    <div class="mx-auto my-auto mt-3">
+      <div class="text-center"><h5><b>Dashboard</b></h5></div>
+      <hr>
+      <div class="container">
+        <div class="row mt-0 p-0 ">
+            <div class="col-md-3 mt-sm-2">
+                <div class="card text-bg-info shadow-lg card-hover">
+                    <div class="card-body">
+                        <h6 class="card-title text-center">Departments Onboarded</h6>
+                        <hr>
+                        <!-- <span class="ms-5 fs-3">20</span><i class="mt-2 fas fa-briefcase fa-3x"></i> -->
+                        <span class="ms-4 fs-1">20</span>
+                        <i class="ms-5 mt-2 fas fa-briefcase fa-3x text-white"></i>
+                        <!-- <p class="card-text"><b>Total</b>20</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-sm-2">
+                <div class="card text-bg-success shadow card-hover">
+                    <div class="card-body" >
+                        <h6 class="card-title text-center">Registered Employees</h6>
+                        <hr>
+                        <span class="ms-4 fs-1">180</span>
+                        <i class="ms-5 mt-2 fas fa-id-card fa-3x text-white"></i>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-sm-2">
+                <div class="card">
+                    <div class="card-body text-bg-warning shadow card-hover">
+                        <h6 class="card-title text-center">Self Verified Employees</h6>
+                        <hr>
+                        <span class="ms-4 fs-1">160</span>
+                        <i class="ms-5 mt-2 fas fa-user-check fa-3x text-white"></i>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-sm-2">
+                <div class="card text-bg-primary">
+                    <div class="card-body shadow card-hover" >
+                        <h6 class="card-title text-center">Approved Employees</h6>
+                        <hr>
+                        <span class="ms-4 fs-1">152</span>
+                        <i class="ms-5 mt-2 fas fa-user-tie fa-3x text-white"></i>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="row">
+        <div class="col-lg-6 p-5 col-12 my-auto mx-auto">
+          <h2 class="header2"><b>Purpose of the portal</b></h2>
+          <!-- <ul class="section">
+            <li>Human Resource Management System (HRMS) is a set of software that helps to manage human resource functions efficiently.</li>
+            <li>Through this system, digital management of service records can be done, as well as reducing time and cost and improving access to digital records.</li>
+            <li>Through this facility, on one hand, time will be saved and on the other hand, availability of digital records will also be easy, along with dashboard, real-time monitoring of employee deployment will also be easy.</li>
+            <li>Along with this, delit information about reimbursement, claims, advance, leaves and other matters related to employees can also be obtained.</li>
+            <li>Through e HRMS facility, dependence on traditional paper records and manual entry of data will be reduced and time will also be saved.</li>
+          </ul> -->
+          <ul class="section">
+            <li *ngFor="let item of visibleItems">{{ item }}</li>
+            <li class="read-more" (click)="toggleShow()">
+              {{ showAll ? 'Read Less' : 'Read More' }}
+            </li>
+          </ul>
+          <hr>
+          <h2 class="header2"><b>Eligibility for registration</b></h2>
+          <ul class="section">
+            <li>Go to online website https//govthealth.cg.gov.in/hrmis/. Go to the login option on the visible homepage and enter all the required login details carefully.</li>
+            <li>If you are already registered and availing any service. For any new registration the official authorities will create NAPA user and registration details on the portal.</li>
+          </ul>
+        </div>
+        <div class="col-lg-6 col-12 my-auto mx-auto">
+          <!-- <app-homeshape></app-homeshape> -->
+          <img class="img-fluid" src="assets/e-hrms_bg_img3.png" style="height: 500px; width: 500px;" alt="e-HRMS">
+          <!-- <img class="img-fluid" src="assets/e-hrms_bg_img3.png" alt="e-HRMS" data-aos="slide-left" data-aos-offset="200" data-aos-duration="1000"> -->
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+
+        </div>
+
+      </div>
+    </div>
+    <div class="py-3" style="padding: 0 15px;background: #eeeeee">
+      <!--Notification-->
+      <div class="card">
+        <div class="card-body notification">
+          <h5>Latest notification</h5>
+          <hr>
+          <div class="scroll-container">
+            <marquee
+              behavior="scroll"
+              direction="up"
+              scrolldelay="250"
+              loop="infinite"
+              width="98%"
+              height="95%"
+              onmouseover="stop();"
+              onmouseout="start();">
+              <ul style="margin-left: -5px">
+                @for (n of notifications; track $index) {
+                  <li><a href="{{n.link}}">{{ n.name }}</a></li>
+                }
+              </ul>
+            </marquee>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card">
+        <div class="card-body notification">
+          <h5>Important links</h5>
+          <hr>
+          <ul>
+            <li><a href="https://cghealth.nic.in/cghealth17/">Department of Health & Family Welfare
+              & Medical Education</a></li>
+            <li><a href="https://cgpaddyonline.co.in/tehsilmodule23/">संस्थागत/रेगहा/बटाईदार/लीज/डुबान क्षेत्र पंजीयन</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="groups" id="groups"> -->
+    <!-- <div style="background:  #eee;" class="group-intro">
+      <div class="group-logo text-primary">
+        <mat-icon>people</mat-icon>
+      </div>
+      <div class="group-text text-defination">
+        <div class="fs-3">2687442</div>
+        गत वर्ष पंजीकृत किसान
+      </div>
+    </div>
+    <div style="background: #EEF7FF" class="group-intro">
+      <div class="group-logo text-primary">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="group-text text-defination">
+        <div class="fs-3">3824</div>
+        कुल RAEO
+      </div>
+    </div>
+    <div style="background:  #eee;" class="group-intro">
+      <div class="group-logo text-primary">
+        <mat-icon>add_to_photos</mat-icon>
+      </div>
+      <div class="group-text text-defination">
+        <div class="fs-3">2037</div>
+        कुल समिति
+      </div>
+    </div>
+    <div style="background: #EEF7FF" class="group-intro">
+      <div class="group-logo text-primary">
+        <mat-icon>ac_unit</mat-icon>
+      </div>
+      <div class="group-text text-defination">
+        <div class="fs-3">204</div>
+        कुल फसल
+      </div>
+    </div> -->
+    <!-- <h1 class="mb-3 text-center header2"><b>पंजीयन की प्रक्रिया</b></h1> -->
+    <!-- <div class="center-container"> -->
+      <h1 class="mb-3 text-center header2"><b>HRMIS</b></h1>
+      <hr>
+    <!-- </div> -->
+    
+  <!-- </div> -->
+  <div class="container-fluid p-sm-5 p-4">
+    <div class="groups">
+      <div class="group-intro group-intro1" style="border: unset">
+        <img ngSrc="assets/flow.png" alt="Panjiyan Flow" priority fill style="position: relative;padding-right: 20px">
+      </div>
+      <div class="group-intro group-intro1" style="border: unset">
+        <div>
+          <!-- <h1 class="mb-3"><b>पंजीयन की प्रक्रिया</b></h1> -->
+          <ul class="section" style="margin-left: -10px">
+            eHRMS with objective to pull off the manual legacy HR system and reform the same with eHRMS. With similar objective, As of now, eHRMS is successfully deployed in Panchayat & Rural Development(PRD), Civil Supplies Corporation, NHM, Health Directorate, Revenue etc. where more than one Lac employees onboarded successfully. As next step ahead and initiative in replacing the manual legacy HR system of all State departments with eHRMS automatic system.
+
+            eHRMS not only provide provision for maintaining eService book, but employee’s personal information, family details, nominees, education, qualification, transfer history, annual confidential reports, leave records etc. With implementation of eHRMS, it alleviates transparency, quick and continuous access to employees records which is difficult in manual handling.
+            @if (readMore) {
+              <li> खरीफ 2020 में धान उपार्जन हेतु पंजीकृत/विक्रय किये गये रकबा पर ही धान के बदले
+                सुगंधित धान, फोर्टिफाइड धान, कृषि फसल, उद्यानिकी फसल एवं वृक्षारोपण करने वाले कृषको का पंजीयन
+                किया जाएगा।
+              </li>
+              <li> कुल धारित रकबे के अधीन बोये गये समस्त फसल हेतु कृषक को ग्रामवार आवेदन करना होगा।
+                कृषक को बोए गए फसल के रकबे की जानकारी खसरावार देनी होगी।
+              </li>
+              <li> यदि कृषक द्वारा कृषि भूमि का क्रय/विक्रय किया जाता है तो गिरदावरी की अंतिम तिथि तक
+                भूइया पोर्टल में प्रदर्शित कुल रकबा के अधीन संबंधित कृषक का पात्रता निधारित की जाएगी।
+              </li>
+              <li> संबंधित मौसम में भुंइया पोर्टल में संधारित गिरदावरी के आंकड़े तथा कृषक के आवेदन में
+                अंकित फसल व रकबे, में से न्यूनतम फसल व रकबे को विभिन्न योजनाओ हेतु मान्य की जाएगी।
+              </li>
+              <li> पंजीकृत किसानों के डेटाबेस को आगामी वर्षाें में उपयोग हेतु कैरी फरवर्ड किया जाएगा।
+                कृषक जो, गतवर्ष के पंजीकृत डेटा में संशोधन नहीं कराना चाहते उन्हें चालू वर्ष में पंजीयन कराने की
+                आवश्यकता नहीं होगी। किन्तु यदि पूर्व में पंजीकृत
+                कृषक किसी कारण से पंजीयन में संशोधन कराना चाहते हैं, तो निर्धारित प्रपत्र में आवेदन कर संशोधन
+                करा सकते हैं।
+              </li>
+              <li> धान उपार्जन योजना एवं बीज उत्पादन कार्यक्रम के तहत् धान उपार्जन के दोहराव को रोकने
+                के लिए पोर्टल में (Seed Production Module) तैयार किया जाएगा। प्रमाणित बीज उत्पादन कार्यक्रम
+                में भाग लेने वाले कृषकों को छ.ग. राज्य बीज प्रमाणीकरण
+                संस्था के साथ-साथ एकीकृत किसान पोर्टल में अनिवार्य रुप से पंजीयन कराना होगा।
+              </li>
+              <li> पोर्टल में पंजीयन हेतु कृषक कोे आवेदन के साथ आधार नंबर अनिवार्य रुप से देना होगा।
+                हितग्राही कृषकों से आधार नंबर उनकी सहमति से प्राप्त किया जाएगा। यदि किसी कृषक के पास आधार नंबर
+                नहीं है, तो मैदानी अमलों के द्वारा ऐसे कृषको को
+                भारतीय विशिष्ट पहचान प्राधिकरण (UIDAI) में पंजीयन हेतु प्रोत्साहित किया जाएगा। आधार नंबरों
+                की गोपनीयता सुनिश्चित की जाएगी।
+              </li>
+              <li> पोर्टल में डूप्लीकेसी को रोकने के लिए आधार नंबर को भारतीय विशिष्ट पहचान प्राधिकरण
+                (UIDAI) से सत्यापन किया जायेगा तथा वास्तविक हितग्राही को ही लाभान्वित करने हेतु कृषकों के
+                बैंक विवरण का PFMS से सत्यापन कराया जायेगा।
+              </li>
+              <li> कृषि फसल लगाने वाले कृषक के आवेदन का परीक्षण व सत्यापन ग्रामीण कृषि विस्तार
+                अधिकारी द्वारा किया जाएगा। किन्तु यदि कोई कृषक उद्यानिकी फसल/वृक्षारोपण करता है अथवा कृषि फसल के
+                साथ उद्यानिकी अथवा वृक्षारोपण करता है तो ऐसे कृषकों
+                के आवेदन का परीक्षण व सत्यापन ग्रामीण उद्यान विस्तार अधिकारी अथवा ग्रामीण कृषि विस्तार अधिकारी
+                में से किसी एक द्वारा किया जाएगा।
+              </li>
+              <li> पोर्टल पर कृषक के आवेदन का ऑनलाइन सत्यापन ग्रामीण कृषि विस्तार अधिकारी/ग्रामीण
+                उद्यान विस्तार अधिकारी को अनिवार्य रुप से करना होगा, तत्पश्चात् ही कृषक का पंजीयन संबंधित सहकारी
+                समिति द्वारा किया जा सकेगा।
+              </li>
+              <li> फसल के रकबा निर्धारण हेतु भुंइया पोर्टल में संधारित भूमि/गिरदावरी के आंकड़ों को ही
+                अधिकृत रुप से उपयोग किया जाएगा।
+              </li>
+              <li> सभी फसलों का कृषकवार, खसरावार, बोए गए फसल के क्षेत्राच्छादन की जानकारी राजस्व
+                विभाग द्वारा गिरदावरी के माध्यम से संकलित की जाएगी।
+              </li>
+              <li> गिरदावरी के आंकड़ों में त्रुटि/भिन्नता होने पर प्रचलित निर्देश एवं प्रक्रिया के
+                अनुसार राजस्व विभाग द्वारा सुधारात्मक कार्यवाही की जाएगी।
+              </li>
+              <li>पोर्टल में प्रदर्शित प्रक्रिया के अनुसार सर्व संबंधितों द्वारा सत्यापन/पंजीयन की
+                कार्यवाही की जाएगी।
+              </li>
+            }
+          </ul>
+          <button class="btn btn-outline-primary btn-sm" (click)="readMore=!readMore">Read @if (!readMore) {
+            More
+          } @else {
+            Less
+          }</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+<footer style="background:#4F0341;margin-bottom: -20px;border-top: 1px solid #fff">
+  <div class="container">
+    <p style="font-size: 14px;text-align: center;color: #fff">Contents owned & updated by Health & Family Welfare Department, Govt. of Chhattisgarh
+      Site designed & Updated by National Health Mission and hosted by <br> National Informatics Centre, Chhattisgarh</p>
+  </div>
+</footer>

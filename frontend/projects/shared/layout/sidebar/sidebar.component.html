@@ -1,0 +1,53 @@
+<aside id="sidebar" class="sidebar">
+  <div class="text-center">
+    <h5 class="m-0"><b>{{ user.type_name }} - {{ user.name }}</b></h5>
+    <div class="text-red"><b><small>User ID - {{ user.user_id }}</small></b></div>
+  </div>
+  <hr class="mb-0">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item" *ngFor="let menu of menus; index as i;" (click)="selectMenu()">
+      <ng-container *ngIf="menu.type=='link'">
+        <a class="nav-link" *ngIf="menu.child.length==0;else submenu" [class.collapsed]="!routeIsActive(menu.route)"
+           routerLink="/{{menu.route}}">
+          <mat-icon>{{ menu.icon }}</mat-icon>
+          <span>{{ menu.name|uppercase }}</span> <span class="ms-auto" *ngIf="menu.is_new">
+        <img src="new.gif" width="50" height="30" alt="new link"></span>
+        </a>
+      </ng-container>
+      <ng-container *ngIf="menu.type!='link'">
+        <a class="nav-link" *ngIf="menu.child.length==0;else submenu" [class.collapsed]="!routeIsActive(menu.route)"
+           href="{{menu.route}}">
+          <mat-icon>{{ menu.icon }}</mat-icon>
+          <span>{{ menu.name|uppercase }}</span> <span class="ms-auto" *ngIf="menu.is_new">
+        <img src="new.gif" width="50" height="30" alt="new link"></span>
+        </a>
+      </ng-container>
+      <ng-template #submenu>
+        <a class="nav-link collapsed" attr.data-bs-target='#menu{{menu.code}}' data-bs-toggle="collapse"
+           [class.collapsed]="checkSubmenu(menu.child)">
+          <span> <mat-icon>{{ menu.icon }}</mat-icon>
+            {{ menu.name|uppercase }}</span><i
+          class="bi bi-chevron-down ms-auto"></i>
+        </a>
+
+        <ul id="menu{{menu.code}}" class="nav-content" data-bs-parent="#sidebar-nav"
+            [class.collapse]="checkSubmenu(menu.child)">
+          <li *ngFor="let submenu of menu.child; index as i;">
+            <a routerLink="/{{submenu.route}}" [class.active]="routeIsActive(submenu.route)">
+              <mat-icon>{{ menu.icon }}</mat-icon>
+              <span>{{ submenu.name|uppercase }}</span>
+            </a>
+          </li>
+        </ul>
+      </ng-template>
+    </li>
+  </ul>
+  <!--  <footer id="footer" class="footer sidebar-nav">-->
+  <!--    <div class="copyright">-->
+  <!--      © Copyright Government of Chhattisgarh Agriculture Development Department-->
+  <!--    </div>-->
+  <!--    <div class="credits">-->
+  <!--      Site hosted by <a href="#">National Informatics Centre, Chhattisgarh</a>-->
+  <!--    </div>-->
+  <!--  </footer>-->
+</aside>

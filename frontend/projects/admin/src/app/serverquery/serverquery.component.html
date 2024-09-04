@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-content>
+    <p class="text-red text-center mb-1"><b>You cannot run DELETE or DROP operations from the server, and you must place the database name before the table name.</b></p>
+    <form [formGroup]="basicForm" (submit)="runQuery()">
+      <mat-form-field appearance="outline">
+        <mat-label>Query</mat-label>
+        <textarea matInput formControlName="query" style="min-height: 250px"></textarea>
+      </mat-form-field>
+      <div class="text-end">
+        @if (results.length > 0) {
+          <div class="alert alert-primary">{{ results }}</div>
+        }
+        <button mat-flat-button color="primary">Run Query</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

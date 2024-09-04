@@ -1,0 +1,50 @@
+@page {
+    size: A4;
+    margin: 30px;
+}
+
+body {
+    font-size: 14px;
+}
+
+h3 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: bold !important;
+}
+
+header {
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px !important;
+}
+
+footer {
+    margin-top: 100px;
+    padding: 50px !important;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100% !important;
+}
+
+thead>tr>td,
+thead>tr>th,
+.table-footer>td {
+    font-size: 15px;
+    text-align: center !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+    border: 1px solid #000
+}
+
+td {
+    padding: 2px;
+}
+
+table>tbody>tr>td {
+    border: 0.7px solid #000;
+    text-align: center !important;
+    font-size: 15px;
+}

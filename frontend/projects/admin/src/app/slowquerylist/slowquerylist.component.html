@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-content>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th></th>
+          <th>Query</th>
+          <th>Execution Time</th>
+          <th>Date</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngIf="is_read && dataSource.length>0">
+          <tr *ngFor="let data of dataSource">
+            <td (click)="onCopySuccess(data.query)" style="cursor:copy;">
+              <mat-icon>file_copy</mat-icon>
+            </td>
+            <td class="text-start query">{{data.query}}</td>
+            <td>{{data.execution_time}} sec</td>
+            <td style="min-width: 100px">{{data.dtstamp | date: 'dd-MM-yyyy hh:ss aa'}}</td>
+            <td>
+              <mat-slide-toggle color="primary" (change)="toggle($event, data.sid)" [checked]="data.status!=0"></mat-slide-toggle>
+            </td>
+            <td>
+              <button [routerLink]="['/slow/', data.sid]" mat-raised-button color="primary" [disabled]="checkExplain(data.query)">Explain</button>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="is_read && dataSource.length==0">
+          <tr>
+            <td colspan="4" class="text-center">No Record Found</td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="!is_read">
+          <tr>
+            <td colspan="4" class="text-center">Loading, Please Wait....</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions" showFirstLastButtons aria-label="Select page"
+                   (page)="pageChanged($event)"></mat-paginator>
+  </mat-card-content>
+</mat-card>
